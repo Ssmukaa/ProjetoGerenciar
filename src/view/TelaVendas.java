@@ -272,6 +272,9 @@ public class TelaVendas extends javax.swing.JFrame {
              boolean ex = dao.Excluir(idV);
              if(ex == true){
                  JOptionPane.showMessageDialog(null,"Venda excluida com sucesso !!");
+                 TelaInicio ti = new TelaInicio();
+                 ti.setVisible(true);
+                 dispose();
              }else{
                  JOptionPane.showMessageDialog(null,"Não foi possível excluir");
              }
@@ -288,7 +291,11 @@ public class TelaVendas extends javax.swing.JFrame {
     
     
     private void BtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAlterarActionPerformed
-       
+        
+        
+        if(validacao() == false){
+            
+        }else{
         Vendas v = new Vendas();
         VendasDao dao = new VendasDao();
         
@@ -320,7 +327,7 @@ public class TelaVendas extends javax.swing.JFrame {
                 v.setData(sqlDate);           
                 
             } catch (ParseException ex) {
-                System.out.println("Erro na conversao da data " + ex.getMessage());
+                JOptionPane.showMessageDialog(null,"Erro na conversao da data " + ex.getMessage());
             } 
             
             
@@ -363,7 +370,7 @@ public class TelaVendas extends javax.swing.JFrame {
             
         }
         dao.desconectar();
-        
+        }
         
     }//GEN-LAST:event_BtAlterarActionPerformed
 
@@ -385,6 +392,11 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void BtAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAdicionarActionPerformed
         
+        
+        if(validacao() == false){
+            
+        }else{
+
         Vendas v = new Vendas();
         VendasDao dao = new VendasDao();
         
@@ -416,7 +428,7 @@ public class TelaVendas extends javax.swing.JFrame {
                 v.setData(sqlDate);           
                 
             } catch (ParseException ex) {
-                System.out.println("Erro na conversao da data " + ex.getMessage());
+               JOptionPane.showMessageDialog(null,"Erro na conversao da data " + ex.getMessage());
             }
             
              if(valorPg < valor){
@@ -457,9 +469,7 @@ public class TelaVendas extends javax.swing.JFrame {
              
         }
            dao.desconectar();
-                
-          
-        
+        }
         
     }//GEN-LAST:event_BtAdicionarActionPerformed
 
@@ -554,7 +564,6 @@ public class TelaVendas extends javax.swing.JFrame {
          CbProdutos.setSelectedItem(produto);
          CbVendedor.setSelectedItem(Vendedor);
          CbFormapg.setSelectedItem(Formapg);
-         System.out.println(Formapg);
          TxQtd.setText(qtd);
          TxValorPg.setText(valor);
          calculo();
@@ -573,6 +582,52 @@ public class TelaVendas extends javax.swing.JFrame {
                  TxQtd.setText("");
                  TxValor.setText("");
                  TxValorPg.setText("");
+    }
+    
+    public boolean validacao(){
+        String data = FfData.getText();
+        String Cliente = TxCliente.getText();
+        String Vendedor = CbVendedor.getSelectedItem().toString();
+        String Formapg = CbFormapg.getSelectedItem().toString();
+        String Produto = CbProdutos.getSelectedItem().toString();
+        String qtd = TxQtd.getText();
+        String valor = TxValorPg.getText();
+        
+        boolean validaData = data.matches("[0-9]{2}[/][0-9]{2}[/][0-9]{4}");
+        
+        boolean v = false;
+        
+        if(validaData == false && Cliente.isEmpty() && Vendedor.contains(" ") && Formapg.contains(" ") && Produto.contains(" ") && qtd.isEmpty() && valor.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Dados inválidos");
+            return v;
+        }else if(validaData == false){
+            JOptionPane.showMessageDialog(null,"Campo 'DATA' está incorreto");
+            return v;
+        }else if(Cliente.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Campo 'CLIENTE' está incorreto"); 
+            return v;
+        }else if(Vendedor.contains(" ")){
+            JOptionPane.showMessageDialog(null,"Campo 'VENDEDOR' está incorreto");
+            return v;
+        }else if(Formapg.contains(" ")){
+            JOptionPane.showMessageDialog(null,"Campo 'FORMA DE PAGAMENTO' está incorreto");
+            return v;
+        }else if(Produto.contains(" ")){
+            JOptionPane.showMessageDialog(null,"Campo 'PRODUTO' está incorreto");
+            return v;
+        }else if(qtd.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Campo 'QUANTIDADE' está incorreto");
+            return v;
+        }else if(valor.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Campo 'VALOR' está incorreto");
+            return v;
+        }
+        else if(validaData == true && !Cliente.isEmpty() && !Vendedor.contains(" ") && !Formapg.contains(" ") && !Produto.contains(" ") && !qtd.isEmpty() && !valor.isEmpty()){
+            v = true;
+            return v;
+        }
+          return  v;
+         
     }
 
 }

@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -33,6 +34,11 @@ public class TelaInicio extends javax.swing.JFrame {
     public TelaInicio() {
         initComponents();
         preencherData();
+        TxTotalDivida.setEditable(false);
+        TxTotalGanhos.setEditable(false);
+        TxTotalVendas.setEditable(false);
+        BtImprimir.setEnabled(false);
+          
         
     }
 
@@ -64,6 +70,14 @@ public class TelaInicio extends javax.swing.JFrame {
         CbSaldo = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         LbInicio = new javax.swing.JLabel();
+        BtImprimir = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        LbTotalGanhos = new javax.swing.JLabel();
+        TxTotalVendas = new javax.swing.JTextField();
+        TxTotalGanhos = new javax.swing.JTextField();
+        LbTotalVendas = new javax.swing.JLabel();
+        LbTotalDivida = new javax.swing.JLabel();
+        TxTotalDivida = new javax.swing.JTextField();
         LbImagemFundo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
@@ -100,7 +114,7 @@ public class TelaInicio extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TbVendas);
 
         PnInicio.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 260, 710, 230);
+        jScrollPane1.setBounds(20, 220, 710, 210);
 
         Pnfiltro.setBackground(new java.awt.Color(153, 153, 153,150));
         Pnfiltro.setForeground(new java.awt.Color(255, 255, 255,100));
@@ -260,7 +274,7 @@ public class TelaInicio extends javax.swing.JFrame {
         );
 
         PnInicio.add(Pnfiltro);
-        Pnfiltro.setBounds(20, 90, 710, 150);
+        Pnfiltro.setBounds(20, 60, 710, 150);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -280,11 +294,75 @@ public class TelaInicio extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LbInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(LbInicio)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         PnInicio.add(jPanel1);
-        jPanel1.setBounds(320, 10, 120, 50);
+        jPanel1.setBounds(320, 10, 120, 40);
+
+        BtImprimir.setBackground(new java.awt.Color(51, 153, 0));
+        BtImprimir.setForeground(new java.awt.Color(255, 255, 255));
+        BtImprimir.setText("Imprimir");
+        BtImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtImprimirActionPerformed(evt);
+            }
+        });
+        PnInicio.add(BtImprimir);
+        BtImprimir.setBounds(630, 450, 90, 30);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255,150));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255,100));
+
+        LbTotalGanhos.setText("Total ganhos");
+
+        TxTotalVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxTotalVendasActionPerformed(evt);
+            }
+        });
+
+        LbTotalVendas.setText("Total vendas:");
+
+        LbTotalDivida.setText("Total dívida:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LbTotalVendas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(TxTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(LbTotalDivida)
+                .addGap(18, 18, 18)
+                .addComponent(TxTotalDivida, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(LbTotalGanhos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TxTotalGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LbTotalGanhos)
+                    .addComponent(TxTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxTotalGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbTotalVendas)
+                    .addComponent(LbTotalDivida)
+                    .addComponent(TxTotalDivida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        PnInicio.add(jPanel2);
+        jPanel2.setBounds(20, 440, 580, 50);
 
         LbImagemFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagemFundo/imagem f.png"))); // NOI18N
         PnInicio.add(LbImagemFundo);
@@ -360,7 +438,11 @@ public class TelaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_CbSaldoActionPerformed
 
     private void BtFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtFiltrarActionPerformed
-
+        
+        TxTotalGanhos.setText("");
+        TxTotalDivida.setText("");
+        TxTotalVendas.setText("");
+        BtImprimir.setEnabled(true);
         String dataIni = FfDataIni.getText();
         String dataFin = FfDatafin.getText();
         String Cliente = TxCliente.getText();
@@ -385,7 +467,7 @@ public class TelaInicio extends javax.swing.JFrame {
             fil.setDatafin(sqlDate2);
 
         } catch (ParseException ex) {
-            System.out.println("Erro na conversao da data " + ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Erro na conversao da data " + ex.getMessage());
         }
         preencherTabela();
     }//GEN-LAST:event_BtFiltrarActionPerformed
@@ -433,7 +515,7 @@ public class TelaInicio extends javax.swing.JFrame {
                 }
                 dao.desconectar();
             }else if(opcao > 0){
-                System.out.println("Operação cancelada");
+                JOptionPane.showMessageDialog(null,"Operação cancelada");
             }
 
         }else{
@@ -445,6 +527,40 @@ public class TelaInicio extends javax.swing.JFrame {
     private void BtFiltrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtFiltrarKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtFiltrarKeyPressed
+
+    private void BtImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtImprimirActionPerformed
+        VendasDao dao = new VendasDao();
+        Vendas v = new Vendas();
+        
+        boolean conec =dao.Conectar();
+        if(conec == false){
+            JOptionPane.showMessageDialog(null,"Erro ao conectar com BD");
+        }else{
+        
+         Double tg =dao.TotalGanhos(fil);
+         Double td = dao.TotalDividas(fil);
+         Double tv = dao.TotalVendas(fil);
+         if(tg ==null && td == null && tv == null){
+             JOptionPane.showMessageDialog(null,"Você precisa filtrar as informações");
+          }else{
+         if(fil.isSaldo()==true){
+             TxTotalGanhos.setText("0,00");
+         }else{
+             TxTotalGanhos.setText(tg.toString().replace(".",",0"));
+         }
+             TxTotalDivida.setText(td.toString().replace(".",",0"));
+             
+             TxTotalVendas.setText(tv.toString().replace(".0",""));
+ 
+         }      
+       
+        }
+            dao.desconectar();
+    }//GEN-LAST:event_BtImprimirActionPerformed
+
+    private void TxTotalVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxTotalVendasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxTotalVendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -483,6 +599,7 @@ public class TelaInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtFiltrar;
+    private javax.swing.JButton BtImprimir;
     private javax.swing.JComboBox<String> CbFormapg;
     private javax.swing.JComboBox<String> CbProduto;
     private javax.swing.JCheckBox CbSaldo;
@@ -494,6 +611,9 @@ public class TelaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel LbImagemFundo;
     private javax.swing.JLabel LbInicio;
     private javax.swing.JLabel LbProduto;
+    private javax.swing.JLabel LbTotalDivida;
+    private javax.swing.JLabel LbTotalGanhos;
+    private javax.swing.JLabel LbTotalVendas;
     private javax.swing.JLabel Lbe;
     private javax.swing.JLabel Lbentree;
     private javax.swing.JMenuItem MIVenda;
@@ -502,11 +622,15 @@ public class TelaInicio extends javax.swing.JFrame {
     private javax.swing.JPanel Pnfiltro;
     private javax.swing.JTable TbVendas;
     private javax.swing.JTextField TxCliente;
+    private javax.swing.JTextField TxTotalDivida;
+    private javax.swing.JTextField TxTotalGanhos;
+    private javax.swing.JTextField TxTotalVendas;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
@@ -577,23 +701,5 @@ public class TelaInicio extends javax.swing.JFrame {
      }
     
     
-    public void lerArquivo(){
-    
-          try{
-            
-            File obj = new File("C://teste//arquivo2.txt");
-            
-            Scanner leitura = new Scanner(obj);
-            while(leitura.hasNextLine() ) {
-            String data = leitura.nextLine();
-        }
-            leitura.close();
-            
-            
-        }catch(FileNotFoundException FE){
-            System.out.println("Erro gerado "+ FE.getMessage() );
-    
-        }
-       }
     
 }

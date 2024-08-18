@@ -83,7 +83,7 @@ public class VendasDao {
             return lista;
             
         }catch(SQLException ex) {
-              System.out.println("Erro ao tentar buscar por categoria " + ex.getMessage());
+              JOptionPane.showMessageDialog(null,"Erro ao tentar buscar por categoria " + ex.getMessage());
               return null;
         }
         
@@ -154,13 +154,7 @@ public class VendasDao {
         }
         
         
-    }
-    
-    
-    
-    
-    
-    
+    }  
     
     public Vendas Consultar(int id){
         try {
@@ -189,6 +183,116 @@ public class VendasDao {
         
     }
     
+     public Double TotalGanhos(Filtro filtro){
+            Double valorTotal = 0.0;
+         try {
+
+            
+            String sqlFiltro = "Select SUM(valor) from vendas where data between '"+filtro.getDataini()+"' and '"+ filtro.getDatafin()+"'";
+            
+            
+            if(!filtro.getCliente().isEmpty()){                
+                sqlFiltro = sqlFiltro + " and cliente like '%"+filtro.getCliente()+"%'";
+            }if(!filtro.getVendedor().equals(" ")){
+                 sqlFiltro = sqlFiltro + " and vendedor = '"+ filtro.getVendedor()+"'";
+            }if(!filtro.getFormapg().equals(" ")){
+                 sqlFiltro = sqlFiltro + " and Formapg = '"+ filtro.getFormapg()+"'";
+            }if(!filtro.getProduto().equals(" ")){
+                sqlFiltro = sqlFiltro + " and Produto = '"+ filtro.getProduto()+"'";
+            }
+                
+              sqlFiltro = sqlFiltro + " and valor > 0 Order by data";
+              
+              stm = conn.createStatement();
+              rs = stm.executeQuery(sqlFiltro);
+           
+            
+            while(rs.next()){
+                valorTotal = rs.getDouble("SUM(valor)");
+            }
+            return valorTotal;
+            
+        }catch(SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Erro" + ex.getMessage());
+              return null;
+        }
+        
+        
+    }
+      public Double TotalDividas(Filtro filtro){
+            Double valorTotal = 0.0;
+         try {
+
+            
+            String sqlFiltro = "Select SUM(valor) from vendas where data between '"+filtro.getDataini()+"' and '"+ filtro.getDatafin()+"'";
+            
+            
+            if(!filtro.getCliente().isEmpty()){                
+                sqlFiltro = sqlFiltro + " and cliente like '%"+filtro.getCliente()+"%'";
+            }if(!filtro.getVendedor().equals(" ")){
+                 sqlFiltro = sqlFiltro + " and vendedor = '"+ filtro.getVendedor()+"'";
+            }if(!filtro.getFormapg().equals(" ")){
+                 sqlFiltro = sqlFiltro + " and Formapg = '"+ filtro.getFormapg()+"'";
+            }if(!filtro.getProduto().equals(" ")){
+                sqlFiltro = sqlFiltro + " and Produto = '"+ filtro.getProduto()+"'";
+            }
+                
+              sqlFiltro = sqlFiltro + " and valor < 0 Order by data";
+              
+              stm = conn.createStatement();
+              rs = stm.executeQuery(sqlFiltro);
+            
+            while(rs.next()){
+                valorTotal = rs.getDouble("SUM(valor)");
+            }
+            return valorTotal;
+            
+        }catch(SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Erro " + ex.getMessage());
+              return null;
+        }
+        
+        
+    }
+    
+    
+     public Double TotalVendas(Filtro filtro){
+            Double valorTotal = 0.0;
+         try {
+
+            
+            String sqlFiltro = "Select SUM(qtd) from vendas where data between '"+filtro.getDataini()+"' and '"+ filtro.getDatafin()+"'";
+            
+            
+            if(!filtro.getCliente().isEmpty()){                
+                sqlFiltro = sqlFiltro + " and cliente like '%"+filtro.getCliente()+"%'";
+            }if(!filtro.isSaldo() == false){
+                sqlFiltro = sqlFiltro + " and valor < 0";
+            }if(!filtro.getVendedor().equals(" ")){
+                 sqlFiltro = sqlFiltro + " and vendedor = '"+ filtro.getVendedor()+"'";
+            }if(!filtro.getFormapg().equals(" ")){
+                 sqlFiltro = sqlFiltro + " and Formapg = '"+ filtro.getFormapg()+"'";
+            }if(!filtro.getProduto().equals(" ")){
+                sqlFiltro = sqlFiltro + " and Produto = '"+ filtro.getProduto()+"'";
+            }
+                
+              sqlFiltro = sqlFiltro + " Order by data";
+              
+              stm = conn.createStatement();
+              rs = stm.executeQuery(sqlFiltro);
+            
+            while(rs.next()){
+                valorTotal = rs.getDouble("SUM(qtd)");
+            }
+            return valorTotal;
+            
+        }catch(SQLException ex) {
+              JOptionPane.showMessageDialog(null,"Erro " + ex.getMessage());
+              return null;
+        }
+        
+        
+    }
     
     
     
