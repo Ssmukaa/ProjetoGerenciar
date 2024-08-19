@@ -39,13 +39,11 @@ public class TelaVendas extends javax.swing.JFrame {
     private void initComponents() {
 
         LbData = new javax.swing.JLabel();
-        LbCliente = new javax.swing.JLabel();
         LbProduto = new javax.swing.JLabel();
         LbQtd = new javax.swing.JLabel();
         LbValor = new javax.swing.JLabel();
         LbVendedor = new javax.swing.JLabel();
         LbFormapg = new javax.swing.JLabel();
-        TxCliente = new javax.swing.JTextField();
         CbProdutos = new javax.swing.JComboBox<>();
         CbVendedor = new javax.swing.JComboBox<>();
         CbFormapg = new javax.swing.JComboBox<>();
@@ -58,6 +56,8 @@ public class TelaVendas extends javax.swing.JFrame {
         LbValorPago = new javax.swing.JLabel();
         FfData = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
+        TxCliente = new javax.swing.JTextField();
+        LbCliente = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         LbTxIni = new javax.swing.JLabel();
         LbLogo = new javax.swing.JLabel();
@@ -73,11 +73,6 @@ public class TelaVendas extends javax.swing.JFrame {
         LbData.setText("Data:");
         getContentPane().add(LbData);
         LbData.setBounds(40, 180, 40, 16);
-
-        LbCliente.setForeground(new java.awt.Color(255, 255, 255));
-        LbCliente.setText("Cliente:");
-        getContentPane().add(LbCliente);
-        LbCliente.setBounds(40, 230, 50, 16);
 
         LbProduto.setForeground(new java.awt.Color(255, 255, 255));
         LbProduto.setText("Produto:");
@@ -103,14 +98,6 @@ public class TelaVendas extends javax.swing.JFrame {
         LbFormapg.setText("Forma de Pagamento:");
         getContentPane().add(LbFormapg);
         LbFormapg.setBounds(330, 230, 130, 16);
-
-        TxCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxClienteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(TxCliente);
-        TxCliente.setBounds(110, 230, 121, 22);
 
         CbProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Caixinha", "Bombom" }));
         getContentPane().add(CbProdutos);
@@ -199,7 +186,38 @@ public class TelaVendas extends javax.swing.JFrame {
         FfData.setBounds(110, 180, 79, 22);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153,100));
-        jPanel2.setLayout(null);
+
+        TxCliente.setPreferredSize(new java.awt.Dimension(64, 25));
+        TxCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxClienteActionPerformed(evt);
+            }
+        });
+
+        LbCliente.setForeground(new java.awt.Color(255, 255, 255));
+        LbCliente.setText("Cliente:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(LbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LbCliente)
+                    .addComponent(TxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79))
+        );
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(20, 160, 730, 180);
 
@@ -609,9 +627,6 @@ public class TelaVendas extends javax.swing.JFrame {
         }else if(Vendedor.contains(" ")){
             JOptionPane.showMessageDialog(null,"Campo 'VENDEDOR' está incorreto");
             return v;
-        }else if(Formapg.contains(" ")){
-            JOptionPane.showMessageDialog(null,"Campo 'FORMA DE PAGAMENTO' está incorreto");
-            return v;
         }else if(Produto.contains(" ")){
             JOptionPane.showMessageDialog(null,"Campo 'PRODUTO' está incorreto");
             return v;
@@ -622,7 +637,7 @@ public class TelaVendas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Campo 'VALOR' está incorreto");
             return v;
         }
-        else if(validaData == true && !Cliente.isEmpty() && !Vendedor.contains(" ") && !Formapg.contains(" ") && !Produto.contains(" ") && !qtd.isEmpty() && !valor.isEmpty()){
+        else if(validaData == true && !Cliente.isEmpty() && !Vendedor.contains(" ")  && !Produto.contains(" ") && !qtd.isEmpty() && !valor.isEmpty()){
             v = true;
             return v;
         }
