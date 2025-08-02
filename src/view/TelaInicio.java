@@ -172,7 +172,12 @@ public class TelaInicio extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Forma de pagamento:");
 
-        CbProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Caixinha", "Bombom" }));
+        CbProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Caixinha", "Bombom", "MorangoDoAmor" }));
+        CbProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbProdutoActionPerformed(evt);
+            }
+        });
 
         CbFormapg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Pix", "Dinheiro", "Cartão" }));
 
@@ -555,6 +560,10 @@ public class TelaInicio extends javax.swing.JFrame {
     private void FfDataIniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FfDataIniKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_FfDataIniKeyPressed
+
+    private void CbProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CbProdutoActionPerformed
 
     /**
      * @param args the command line arguments

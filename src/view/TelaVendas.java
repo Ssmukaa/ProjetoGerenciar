@@ -65,7 +65,7 @@ public class TelaVendas extends javax.swing.JFrame {
         imagemFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(780, 550));
+        setPreferredSize(new java.awt.Dimension(768, 550));
         getContentPane().setLayout(null);
 
         LbData.setBackground(new java.awt.Color(153, 153, 153));
@@ -99,7 +99,7 @@ public class TelaVendas extends javax.swing.JFrame {
         getContentPane().add(LbFormapg);
         LbFormapg.setBounds(330, 230, 130, 16);
 
-        CbProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Caixinha", "Bombom" }));
+        CbProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Caixinha", "Bombom", "MorangoDoAmor" }));
         getContentPane().add(CbProdutos);
         CbProdutos.setBounds(110, 300, 99, 22);
 
@@ -577,6 +577,14 @@ public class TelaVendas extends javax.swing.JFrame {
      }else if(CbProdutos.getSelectedItem().toString() == "Bombom"){
          Double qtd = Double.parseDouble(TxQtd.getText());
         Double valor = qtd * 4;
+        DecimalFormat mascara = new DecimalFormat("###,###.00");
+        mascara.format(valor);
+        
+        TxValor.setText(String.valueOf(valor+"0").replace(".",","));
+        TxValorPg.setText(String.valueOf(valor+"0"));
+     }else if(CbProdutos.getSelectedItem().toString() == "MorangoDoAmor"){
+         Double qtd = Double.parseDouble(TxQtd.getText());
+        Double valor = qtd * 13;
         DecimalFormat mascara = new DecimalFormat("###,###.00");
         mascara.format(valor);
         
