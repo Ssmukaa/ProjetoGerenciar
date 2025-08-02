@@ -450,7 +450,7 @@ public class TelaVendas extends javax.swing.JFrame {
             }
             
              if(valorPg < valor){
-               int opcao = JOptionPane.showConfirmDialog(null,"A venda está com o valor negativo\n Deseja alterar ?");
+               int opcao = JOptionPane.showConfirmDialog(null,"A venda está com o valor negativo\n Deseja adicionar mesmo assim ?");
                valorPg = valorPg - valor;
                v.setValor(valorPg);
             if(opcao > 0){
@@ -565,12 +565,24 @@ public class TelaVendas extends javax.swing.JFrame {
      }
  
  public void calculo(){
+     
+     if(CbProdutos.getSelectedItem().toString() == "Caixinha"){
         Double qtd = Double.parseDouble(TxQtd.getText());
-        Double valor = qtd * 10;
+        Double valor = qtd * 12;
         DecimalFormat mascara = new DecimalFormat("###,###.00");
         mascara.format(valor);
         
         TxValor.setText(String.valueOf(valor+"0").replace(".",","));
+        TxValorPg.setText(String.valueOf(valor+"0"));
+     }else if(CbProdutos.getSelectedItem().toString() == "Bombom"){
+         Double qtd = Double.parseDouble(TxQtd.getText());
+        Double valor = qtd * 4;
+        DecimalFormat mascara = new DecimalFormat("###,###.00");
+        mascara.format(valor);
+        
+        TxValor.setText(String.valueOf(valor+"0").replace(".",","));
+        TxValorPg.setText(String.valueOf(valor+"0"));
+     }
  }
  
    int idV;

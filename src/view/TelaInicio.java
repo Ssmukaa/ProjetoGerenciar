@@ -82,7 +82,6 @@ public class TelaInicio extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
         MIVenda = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -128,6 +127,11 @@ public class TelaInicio extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        FfDataIni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                FfDataIniKeyPressed(evt);
+            }
+        });
 
         try {
             FfDatafin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -388,14 +392,6 @@ public class TelaInicio extends javax.swing.JFrame {
         });
         Menu.add(MIVenda);
 
-        jMenuItem2.setText("Cálculos");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        Menu.add(jMenuItem2);
-
         jMenuBar1.add(Menu);
 
         setJMenuBar(jMenuBar1);
@@ -427,12 +423,6 @@ public class TelaInicio extends javax.swing.JFrame {
         
     }//GEN-LAST:event_MenuActionPerformed
      Filtro fil = new Filtro();
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        TelaCalculos c = new TelaCalculos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void CbSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbSaldoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CbSaldoActionPerformed
@@ -562,6 +552,10 @@ public class TelaInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TxTotalVendasActionPerformed
 
+    private void FfDataIniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FfDataIniKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FfDataIniKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -628,7 +622,6 @@ public class TelaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
